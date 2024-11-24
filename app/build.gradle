@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdk 28
+    buildToolsVersion '34.0.0'
+    defaultConfig {
+        applicationId "jp.dip.muracoro.comittont"
+        minSdkVersion 8
+        targetSdkVersion 8
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+    productFlavors {
+    }
+    ndkVersion '27.0.11718014 rc1'
+}
+
+dependencies {
+    api files('libs/svgandroid.jar')
+    implementation files('libs/jcifs-ng-2.1.0-SNAPSHOT.jar')
+    implementation 'org.slf4j:slf4j-android:1.7.25'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.59'
+}
